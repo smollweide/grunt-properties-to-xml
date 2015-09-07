@@ -43,6 +43,15 @@ module.exports = function (grunt) {
 				files: {
 					'tmp/baseGroups.xml': ['test/fixtures/baseGroups.properties']
 				}
+			},
+			baseGroups2: {
+				options: {
+					groupByKey: true,
+					groupByKeyOut: 3
+				},
+				files: {
+					'tmp/baseGroups2.xml': ['test/fixtures/baseGroups2.properties']
+				}
 			}
 		},
 

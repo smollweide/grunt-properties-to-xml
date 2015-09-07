@@ -21,8 +21,9 @@ module.exports = function (grunt) {
 			groupByKey: false,
 			groupByKeyXmlNodeName: 'group',
 			groupByKeyXmlNodeAttributeName: 'name',
-			groupByKeyPattern: /(^[a-zA-Z0-9-_]*)(\..*)/,
-			groupByKeyNumber: 1
+			groupByKeyPattern: /(^[a-zA-Z0-9-_]*)(\.)(.*)/,
+			groupByKeyNumber: 1,
+			groupByKeyOut: -1
 		});
 
 		function _forIn (obj, callback) {
@@ -98,7 +99,11 @@ module.exports = function (grunt) {
 					out[group] = {};
 				}
 
-				out[group][key] = value.trim();
+				if (options.groupByKeyOut >= 0) {
+					key = reg[options.groupByKeyOut].trim();
+				}
+
+				out[group][key] = value;
 
 				return true;
 			});

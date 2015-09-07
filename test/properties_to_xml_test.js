@@ -44,5 +44,14 @@ exports.properties_to_xml = {
 		test.equal(actual, expected);
 
 		test.done();
+	},
+	baseGroups2: function (test) {
+		test.expect(1);
+
+		var actual = grunt.file.read('tmp/baseGroups2.xml');
+		var expected = grunt.file.read('test/expected/baseGroups2.xml');
+		test.equal(actual, expected);
+
+		test.done();
 	}
 };
