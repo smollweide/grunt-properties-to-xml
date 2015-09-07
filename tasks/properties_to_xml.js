@@ -23,7 +23,9 @@ module.exports = function (grunt) {
 			groupByKeyXmlNodeAttributeName: 'name',
 			groupByKeyPattern: /(^[a-zA-Z0-9-_]*)(\.)(.*)/,
 			groupByKeyNumber: 1,
-			groupByKeyOut: -1
+			groupByKeyOut: -1,
+			keyPrefix: '',
+			groupPrefix: ''
 		});
 
 		function _forIn (obj, callback) {
@@ -113,8 +115,7 @@ module.exports = function (grunt) {
 		}
 
 		function getStrXmlNode (key, value) {
-
-			return '<' + options.xmlNodeName + ' ' + options.xmlNodeAttributeName + '="' + key + '"' + '>' +
+			return '<' + options.xmlNodeName + ' ' + options.xmlNodeAttributeName + '="' + options.keyPrefix + key + '"' + '>' +
 				value +
 				'</' + options.xmlNodeName + '>';
 		}
@@ -126,7 +127,7 @@ module.exports = function (grunt) {
 			_forIn(translateToGroupedObject(data), function (groupKey, groupValue) {
 				out.push(
 					'<' + options.groupByKeyXmlNodeName + ' ' +
-					options.groupByKeyXmlNodeAttributeName + '="' + groupKey + '"' +
+					options.groupByKeyXmlNodeAttributeName + '="' + options.groupPrefix + groupKey + '"' +
 					'>'
 				);
 				_forIn(groupValue, function (key, value) {

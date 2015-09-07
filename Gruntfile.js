@@ -52,6 +52,35 @@ module.exports = function (grunt) {
 				files: {
 					'tmp/baseGroups2.xml': ['test/fixtures/baseGroups2.properties']
 				}
+			},
+			basePrefix: {
+				options: {
+					keyPrefix: 'react.'
+				},
+				files: {
+					'tmp/basePrefix.xml': ['test/fixtures/basePrefix.properties']
+				}
+			},
+			basePrefixGroups2: {
+				options: {
+					groupByKey: true,
+					groupByKeyOut: 3,
+					keyPrefix: 'react.'
+				},
+				files: {
+					'tmp/basePrefixGroups2.xml': ['test/fixtures/basePrefixGroups2.properties']
+				}
+			},
+			basePrefixGroupsAndKeys: {
+				options: {
+					groupByKey: true,
+					groupByKeyOut: 3,
+					keyPrefix: 'react.',
+					groupPrefix: 'reactGroup.'
+				},
+				files: {
+					'tmp/basePrefixGroupsAndKeys.xml': ['test/fixtures/basePrefixGroupsAndKeys.properties']
+				}
 			}
 		},
 

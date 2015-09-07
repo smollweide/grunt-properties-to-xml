@@ -1,0 +1,10 @@
+<group name="group2">
+	<label key="react.item2">Item 2</label>
+	<label key="react.item3">Item 3 = something</label>
+	<label key="react.item1">Item 1</label>
+</group>
+<group name="group1">
+	<label key="react.item1">Item 1</label>
+	<label key="react.item2">Item 2</label>
+	<label key="react.item3">Item 3 = something</label>
+</group>

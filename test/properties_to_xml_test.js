@@ -53,5 +53,32 @@ exports.properties_to_xml = {
 		test.equal(actual, expected);
 
 		test.done();
+	},
+	basePrefix: function (test) {
+		test.expect(1);
+
+		var actual = grunt.file.read('tmp/basePrefix.xml');
+		var expected = grunt.file.read('test/expected/basePrefix.xml');
+		test.equal(actual, expected);
+
+		test.done();
+	},
+	basePrefixGroups2: function (test) {
+		test.expect(1);
+
+		var actual = grunt.file.read('tmp/basePrefixGroups2.xml');
+		var expected = grunt.file.read('test/expected/basePrefixGroups2.xml');
+		test.equal(actual, expected);
+
+		test.done();
+	},
+	basePrefixGroupsAndKeys: function (test) {
+		test.expect(1);
+
+		var actual = grunt.file.read('tmp/basePrefixGroupsAndKeys.xml');
+		var expected = grunt.file.read('test/expected/basePrefixGroupsAndKeys.xml');
+		test.equal(actual, expected);
+
+		test.done();
 	}
 };
