@@ -8,43 +8,89 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
+	// Please see the Grunt documentation for more information regarding task
+	// creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerMultiTask('properties_to_xml', 'Convert java .properties files to xml files.', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+	grunt.registerMultiTask('properties_to_xml', 'Convert java .properties files to xml files.', function () {
+		// Merge task-specific and/or target-specific options with these defaults.
+		var options = this.options({
+			xmlNodeName: 'label',
+			xmlNodeAttributeName: 'key'
+		});
 
-    // Iterate over all specified file groups.
-    this.files.forEach(function(f) {
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
-        }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
+		function translateToObject (data) {
 
-      // Handle options.
-      src += options.punctuation;
+			var fileSpl = data.split(/\n/),
+				out = {};
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+			fileSpl.forEach(function (item) {
+				var itemSpl, value;
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-    });
-  });
+				if (item.search(/^#/) >= 0) {
+					return true;
+				}
+
+				itemSpl = item.split('=');
+
+				if (itemSpl.length < 2) {
+					return true;
+				}
+
+				value = itemSpl.slice(1, itemSpl.length);
+				value = value.join('=');
+
+				out[itemSpl[0].trim()] = value.trim();
+
+				return true;
+			});
+
+			return out;
+
+		}
+
+		function getStrXmlNode (key, value) {
+
+			return '<' + options.xmlNodeName + ' ' + options.xmlNodeAttributeName + '="' + key + '"' + '>' +
+				value +
+				'</' + options.xmlNodeName + '>';
+		}
+
+		function translateToXml (data) {
+
+			var out = [];
+
+			data = translateToObject(data);
+
+			var key;
+
+			for (key in data) {
+				if (data.hasOwnProperty(key)) {
+					var value = data[key];
+
+					out.push(getStrXmlNode(key,value));
+				}
+			}
+
+			return out.join('\n');
+		}
+
+		// Iterate over all specified file groups.
+		this.files.forEach(function (data) {
+			data.src.filter(function (filepath) {
+				if (!grunt.file.exists(filepath)) {
+					grunt.log.warn('Source file "' + filepath + '" not found.');
+					return false;
+				} else {
+					return true;
+				}
+			}).map(function (filepath) {
+				var src = grunt.file.read(filepath);
+				grunt.file.write(data.dest, translateToXml(src));
+				grunt.log.writeln('File "' + data.dest + '" created.');
+			});
+		});
+	});
 
 };
