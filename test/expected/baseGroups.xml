@@ -1,0 +1,10 @@
+<group name="group2">
+	<label key="group2.item2">Item 2</label>
+	<label key="group2.item3">Item 3 = something</label>
+	<label key="group2.item1">Item 1</label>
+</group>
+<group name="group1">
+	<label key="group1.item1">Item 1</label>
+	<label key="group1.item2">Item 2</label>
+	<label key="group1.item3">Item 3 = something</label>
+</group>
