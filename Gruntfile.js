@@ -81,6 +81,30 @@ module.exports = function (grunt) {
 				files: {
 					'tmp/basePrefixGroupsAndKeys.xml': ['test/fixtures/basePrefixGroupsAndKeys.properties']
 				}
+			},
+			keysAsAttributes: {
+				options: {
+					groupByKey: true,
+					groupByKeyOut: 3,
+					keysAsAttributes: true
+				},
+				files: {
+					'tmp/keysAsAttributes.xml': ['test/fixtures/keysAsAttributes.properties']
+				}
+			},
+			keysAsAttributes2: {
+				options: {
+					groupByKey: true,
+					groupByKeyOut: 3,
+					keysAsAttributes: true,
+					additionalGroupAttributes: [
+						'jcr:title="{=groupName}"',
+						'jcr:primaryType="nt:unstructured"'
+					]
+				},
+				files: {
+					'tmp/keysAsAttributes2.xml': ['test/fixtures/keysAsAttributes.properties']
+				}
 			}
 		},
 

@@ -25,7 +25,9 @@ module.exports = function (grunt) {
 			groupByKeyNumber: 1,
 			groupByKeyOut: -1,
 			keyPrefix: '',
-			groupPrefix: ''
+			groupPrefix: '',
+			keysAsAttributes: false,
+			additionalGroupAttributes: []
 		});
 
 		function _forIn (obj, callback) {
@@ -37,6 +39,15 @@ module.exports = function (grunt) {
 					var value = obj[key];
 					callback.call({}, key, value);
 				}
+			}
+		}
+
+		function _for (arr, callback) {
+
+			var i, len = arr.length;
+
+			for (i = 0; i < len; i +=1) {
+				callback.call({}, arr[i], i);
 			}
 		}
 
@@ -120,9 +131,40 @@ module.exports = function (grunt) {
 				'</' + options.xmlNodeName + '>';
 		}
 
+		function getStrXmlAttribute (key, value) {
+			return options.keyPrefix + key + '="' + value + '"';
+		}
+
 		function translateToGroupedXml (data) {
 
 			var out = [];
+
+			if (options.keysAsAttributes) {
+
+				_forIn(translateToGroupedObject(data), function (groupKey, groupValue) {
+
+					var groupName = options.groupPrefix + groupKey;
+
+					out.push(
+						'<' + groupName
+					);
+
+					if (options.additionalGroupAttributes.length > 0) {
+						_for (options.additionalGroupAttributes, function (groupAttribute) {
+							out.push('\t' + groupAttribute.replace(/\{=groupName\}/g, groupName));
+						});
+					}
+
+					_forIn(groupValue, function (key, value) {
+						out.push('\t' + getStrXmlAttribute(key,value));
+					});
+					out.push(
+						'/>'
+					);
+				});
+
+				return out.join('\n');
+			}
 
 			_forIn(translateToGroupedObject(data), function (groupKey, groupValue) {
 				out.push(
