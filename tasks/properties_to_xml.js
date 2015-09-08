@@ -16,6 +16,7 @@ module.exports = function (grunt) {
 	grunt.registerMultiTask('properties_to_xml', 'Convert java .properties files to xml files.', function () {
 		// Merge task-specific and/or target-specific options with these defaults.
 		var options = this.options({
+			head: '',
 			xmlNodeName: 'label',
 			xmlNodeAttributeName: 'key',
 			groupByKey: false,
@@ -139,6 +140,10 @@ module.exports = function (grunt) {
 
 			var out = [];
 
+			if (options.head !== '') {
+				out.push(options.head);
+			}
+
 			if (options.keysAsAttributes) {
 
 				_forIn(translateToGroupedObject(data), function (groupKey, groupValue) {
@@ -186,6 +191,10 @@ module.exports = function (grunt) {
 		function translateToXml (data) {
 
 			var out = [];
+
+			if (options.head !== '') {
+				out.push(options.head);
+			}
 
 			if (options.keysAsAttributes) {
 

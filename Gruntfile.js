@@ -108,6 +108,7 @@ module.exports = function (grunt) {
 			},
 			keysAsAttributes3: {
 				options: {
+					head: '<?xml version="1.0" encoding="UTF-8"?>',
 					keysAsAttributes: true,
 					xmlNodeName: 'jcr:root',
 					additionalGroupAttributes: [

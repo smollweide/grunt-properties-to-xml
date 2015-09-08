@@ -98,5 +98,14 @@ exports.properties_to_xml = {
 		test.equal(actual, expected);
 
 		test.done();
+	},
+	keysAsAttributes3: function (test) {
+		test.expect(1);
+
+		var actual = grunt.file.read('tmp/keysAsAttributes3.xml');
+		var expected = grunt.file.read('test/expected/keysAsAttributes3.xml');
+		test.equal(actual, expected);
+
+		test.done();
 	}
 };
