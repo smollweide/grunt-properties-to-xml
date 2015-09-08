@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root
+	xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+	xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:title="React"
+	jcr:primaryType="sling:Folder"
+	group2.item2="Item 2"
+	group2.item3="Item 3 = something"
+	group2.item1="Item 1"
+	group1.tem1="Item 1"
+	group1.item2="Item 2"
+	group1.item3="Item 3 = something"
+/>

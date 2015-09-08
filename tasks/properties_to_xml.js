@@ -187,6 +187,29 @@ module.exports = function (grunt) {
 
 			var out = [];
 
+			if (options.keysAsAttributes) {
+
+				out.push(
+					'<' + options.xmlNodeName
+				);
+
+				if (options.additionalGroupAttributes.length > 0) {
+					_for (options.additionalGroupAttributes, function (groupAttribute) {
+						out.push('\t' + groupAttribute);
+					});
+				}
+
+				_forIn(translateToObject(data), function (key, value) {
+					out.push('\t' + getStrXmlAttribute(key,value));
+				});
+
+				out.push(
+					'/>'
+				);
+
+				return out.join('\n');
+			}
+
 			_forIn(translateToObject(data), function (key, value) {
 				out.push(getStrXmlNode(key,value));
 			});

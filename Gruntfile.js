@@ -105,6 +105,21 @@ module.exports = function (grunt) {
 				files: {
 					'tmp/keysAsAttributes2.xml': ['test/fixtures/keysAsAttributes.properties']
 				}
+			},
+			keysAsAttributes3: {
+				options: {
+					keysAsAttributes: true,
+					xmlNodeName: 'jcr:root',
+					additionalGroupAttributes: [
+						'xmlns:sling="http://sling.apache.org/jcr/sling/1.0"',
+						'xmlns:jcr="http://www.jcp.org/jcr/1.0"',
+						'jcr:title="React"',
+						'jcr:primaryType="sling:Folder"'
+					]
+				},
+				files: {
+					'tmp/keysAsAttributes3.xml': ['test/fixtures/keysAsAttributes.properties']
+				}
 			}
 		},
 
