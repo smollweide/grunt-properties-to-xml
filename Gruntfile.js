@@ -121,6 +121,22 @@ module.exports = function (grunt) {
 				files: {
 					'tmp/keysAsAttributes3.xml': ['test/fixtures/keysAsAttributes.properties']
 				}
+			},
+			keysAsAttributes4: {
+				options: {
+					keyPrefix: 'React.',
+					valuePrefix: '{String}',
+					head: '<?xml version="1.0" encoding="UTF-8"?>',
+					keysAsAttributes: true,
+					xmlNodeName: 'jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"',
+					additionalGroupAttributes: [
+						'jcr:title="React"',
+						'jcr:primaryType="nt:unstructured"'
+					]
+				},
+				files: {
+					'tmp/keysAsAttributes4.xml': ['test/fixtures/keysAsAttributes4.properties']
+				}
 			}
 		},
 

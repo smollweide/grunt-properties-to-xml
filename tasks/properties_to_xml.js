@@ -26,6 +26,7 @@ module.exports = function (grunt) {
 			groupByKeyNumber: 1,
 			groupByKeyOut: -1,
 			keyPrefix: '',
+			valuePrefix: '',
 			groupPrefix: '',
 			keysAsAttributes: false,
 			additionalGroupAttributes: []
@@ -128,12 +129,16 @@ module.exports = function (grunt) {
 
 		function getStrXmlNode (key, value) {
 			return '<' + options.xmlNodeName + ' ' + options.xmlNodeAttributeName + '="' + options.keyPrefix + key + '"' + '>' +
-				value +
+				options.valuePrefix + escapeValue(value) +
 				'</' + options.xmlNodeName + '>';
 		}
 
 		function getStrXmlAttribute (key, value) {
-			return options.keyPrefix + key + '="' + value + '"';
+			return options.keyPrefix + key + '="' + options.valuePrefix + escapeValue(value) + '"';
+		}
+
+		function escapeValue (val) {
+			return val.replace(/"/g, '&quot;');
 		}
 
 		function translateToGroupedXml (data) {

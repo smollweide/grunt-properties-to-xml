@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	jcr:title="React"
+	jcr:primaryType="nt:unstructured"
+	React.group2.item2="{String}Item 2"
+	React.group1.item1="{String}Item 1"
+	React.group1.item2="{String}Item 2"
+	React.group2.item3="{String}Item 3 = something"
+	React.group1.item3="{String}Item 3 = something"
+	React.group2.item1="{String}Item &quot; 1"
+/>
