@@ -116,5 +116,14 @@ exports.properties_to_xml = {
 		test.equal(actual, expected);
 
 		test.done();
+	},
+	specialSigns1: function (test) {
+		test.expect(1);
+
+		var actual = grunt.file.read('tmp/specialSigns1.xml');
+		var expected = grunt.file.read('test/expected/specialSigns1.xml');
+		test.equal(actual, expected);
+
+		test.done();
 	}
 };

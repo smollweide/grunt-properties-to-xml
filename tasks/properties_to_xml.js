@@ -138,7 +138,12 @@ module.exports = function (grunt) {
 		}
 
 		function escapeValue (val) {
-			return val.replace(/"/g, '&quot;');
+			return val
+				.replace(/&/g, '&amp;')
+				.replace(/"/g, '&quot;')
+				.replace(/\[/g, '\\[')
+				.replace(/]/g, '\\]')
+			;
 		}
 
 		function translateToGroupedXml (data) {

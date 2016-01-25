@@ -1,7 +1,7 @@
 {
 	"name": "grunt-properties-to-xml",
 	"description": "Convert java .properties files to xml files.",
-	"version": "0.3.0",
+	"version": "0.3.2",
 	"homepage": "",
 	"author": {
 		"name": "Simon Mollweide",
